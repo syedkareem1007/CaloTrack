@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skeuomorphic Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="journal-wrapper">
+    <!-- The physical notebook spine -->
+    <div class="notebook-spine"></div>
+
+    <!-- The main content area acting like a page -->
+    <div class="journal-page">
+      <header>
+        <div class="date-stamp" id="currentDate"></div>
+        <h1 class="embossed-title">Daily Tracker</h1>
+      </header>
+
+      <main>
+        <!-- Dashboards -->
+        <section class="dashboard-grid">
+          <div class="dashboard-panel inset-panel">
+            <h2>Calories</h2>
+            <div class="meter">
+              <div class="meter-fill gradient-orange" id="calorieFill" style="width: 0%;"></div>
+            </div>
+            <div class="stat-text">
+              <span id="calorieCurrent">0</span> / <span id="calorieGoal">2000</span> kcal
+            </div>
+          </div>
+
+          <div class="dashboard-panel inset-panel">
+            <h2>Water</h2>
+            <div class="liquid-container">
+              <div class="liquid-level" id="waterFill" style="height: 0%;"></div>
+            </div>
+            <div class="stat-text">
+              <span id="waterCurrent">0</span> / <span id="waterGoal">8</span> glasses
+            </div>
+            <button class="mechanical-btn push-btn" id="addWaterBtn">
+              <div class="btn-top">+1 Glass</div>
+            </button>
+          </div>
+        </section>
+
+        <!-- Food Entry -->
+        <section class="log-section">
+          <h2>Food Log</h2>
+          <div class="camera-lens-wrapper">
+            <button id="scanFoodBtn" class="camera-shutter-btn">
+              <div class="lens-glass">
+                <span class="lens-text">Scan Food</span>
+              </div>
+            </button>
+          </div>
+
+          <!-- Camera Modal -->
+          <div id="cameraModal" class="camera-modal hidden">
+            <div class="viewfinder">
+              <video id="cameraFeed" autoplay playsinline></video>
+              <div class="viewfinder-overlay">
+                <div class="crosshair"></div>
+              </div>
+            </div>
+            <div class="camera-controls">
+              <button id="captureBtn" class="mechanical-btn push-btn shutter-action-btn">
+                <div class="btn-top">SNAP</div>
+              </button>
+              <button id="closeCameraBtn" class="close-btn">X</button>
+            </div>
+          </div>
+          <!-- Manual fallback and scanning status -->
+          <div id="scannerStatus" class="ticker-tape hidden"></div>
+
+          <ul class="food-list" id="foodList">
+            <!-- Items appended via JS -->
+          </ul>
+        </section>
+
+        <!-- Weekly Summary -->
+        <section class="summary-section">
+          <h2>Weekly Summary</h2>
+          <div class="clipboard">
+            <div class="clip"></div>
+            <table class="paper-table">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>Kcal</th>
+                  <th>Water</th>
+                </tr>
+              </thead>
+              <tbody id="summaryTableBody">
+                <!-- Summary items -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
